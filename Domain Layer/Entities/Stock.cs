@@ -20,7 +20,7 @@ namespace DomainLayer.Entities
         public DateTime LastUpdated { get; set; }
 
         public ICollection<PortfolioItem> PortfolioItems { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        //public ICollection<Order> Orders { get; set; }
         public ICollection<StockPriceHistory> PriceHistory { get; set; }
         public ICollection<WatchlistItem> WatchlistItems { get; set; }
 

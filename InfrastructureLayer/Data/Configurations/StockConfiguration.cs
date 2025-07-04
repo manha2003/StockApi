@@ -14,21 +14,54 @@ namespace InfrastructureLayer.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Stock> builder)
         {
-            builder.HasIndex(s => s.Symbol).IsUnique();
-            builder.Property(s => s.Symbol).IsRequired().HasMaxLength(10);
-            builder.Property(s => s.Name).IsRequired().HasMaxLength(250);
-            builder.Property(s => s.Exchange).HasMaxLength(50);
-            builder.Property(s => s.Sector).HasMaxLength(100);
-            builder.Property(s => s.Industry).HasMaxLength(150);
-            builder.Property(s => s.Currency).HasMaxLength(10);
+            builder.HasKey(s => s.Id);
 
+            builder.Property(s => s.Symbol)
+                   .IsRequired()
+                   .HasMaxLength(20);
+
+            builder.Property(s => s.Name)
+                   .IsRequired()
+                   .HasMaxLength(100);
+
+            builder.Property(s => s.Exchange)
+                   .HasMaxLength(50);
+
+            builder.Property(s => s.Sector)
+                   .HasMaxLength(100);
+
+            builder.Property(s => s.Industry)
+                   .HasMaxLength(100);
+
+            builder.Property(s => s.Currency)
+                   .HasMaxLength(10);
+
+            builder.Property(s => s.IsActive)
+                   .IsRequired();
+
+            builder.Property(s => s.LastUpdated)
+                   .IsRequired();
+
+            
             builder.HasMany(s => s.PortfolioItems)
                    .WithOne(pi => pi.Stock)
-                   .HasForeignKey(pi => pi.StockId);
+                   .HasForeignKey(pi => pi.StockId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+          /*  builder.HasMany(s => s.Orders)
+                   .WithOne(o => o.Stock)
+                   .HasForeignKey(o => o.StockId)
+                   .OnDelete(DeleteBehavior.Restrict);*/
+
+            builder.HasMany(s => s.PriceHistory)
+                   .WithOne(ph => ph.Stock)
+                   .HasForeignKey(ph => ph.StockId)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(s => s.WatchlistItems)
-                   .WithOne(wli => wli.Stock)
-                   .HasForeignKey(wli => wli.StockId);
+                   .WithOne(wi => wi.Stock)
+                   .HasForeignKey(wi => wi.StockId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
 
     }

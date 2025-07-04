@@ -13,25 +13,31 @@ namespace InfrastructureLayer.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<StockPriceHistory> builder)
         {
-            builder.HasKey(sph => sph.Id);
+            builder.HasKey(sph => sph.StockHistoryId);
+
+            builder.Property(h => h.StockId)
+                   .IsRequired();
 
             builder.Property(sph => sph.Timestamp)
                    .IsRequired();
 
-            builder.Property(sph => sph.Open)
+            builder.Property(sph => sph.OpenPrice)
                    .HasPrecision(18, 2);
 
-            builder.Property(sph => sph.High)
+            builder.Property(sph => sph.HighPrice)
                    .HasPrecision(18, 2);
 
-            builder.Property(sph => sph.Low)
+            builder.Property(sph => sph.LowPrice)
                    .HasPrecision(18, 2);
 
-            builder.Property(sph => sph.Close)
+            builder.Property(sph => sph.ClosePrice)
                    .HasPrecision(18, 2);
+
+            builder.Property(h => h.Volume)
+                   .IsRequired();
 
             builder.HasOne(sph => sph.Stock)
-                   .WithMany()
+                   .WithMany(s => s.PriceHistory)
                    .HasForeignKey(sph => sph.StockId)
                    .OnDelete(DeleteBehavior.Cascade);
         }

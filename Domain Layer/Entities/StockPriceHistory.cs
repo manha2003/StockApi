@@ -8,17 +8,17 @@ namespace DomainLayer.Entities
 {
     public class StockPriceHistory
     {
-        public Guid Id { get; set; }
+        public Guid StockHistoryId { get; set; }
 
         public Guid StockId { get; set; }
         public Stock Stock { get; set; }
 
         public DateTime Timestamp { get; set; }
 
-        public decimal Open { get; set; }
-        public decimal High { get; set; }
-        public decimal Low { get; set; }
-        public decimal Close { get; set; }
+        public decimal OpenPrice { get; set; }
+        public decimal HighPrice { get; set; }
+        public decimal LowPrice { get; set; }
+        public decimal ClosePrice { get; set; }
         public long Volume { get; set; }
     }
 
