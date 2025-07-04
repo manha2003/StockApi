@@ -21,8 +21,8 @@ namespace DomainLayer.Entities
         
         public ICollection<Portfolio>? Portfolios { get; set; }
         public ICollection<Watchlist>? Watchlists { get; set; }
-        public ICollection<Order>? Orders { get; set; }
-        public ICollection<Post>? Posts { get; set; }
+        //public ICollection<Order>? Orders { get; set; }
+        //public ICollection<Post>? Posts { get; set; }
         //public ICollection<PostLike>? Likes { get; set; }
 
 

@@ -27,7 +27,7 @@ namespace InfrastructureLayer.Data.Configurations
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(wli => wli.Stock)
-                   .WithMany()
+                   .WithMany(s => s.WatchlistItems)
                    .HasForeignKey(wli => wli.StockId)
                    .OnDelete(DeleteBehavior.Restrict);
         }

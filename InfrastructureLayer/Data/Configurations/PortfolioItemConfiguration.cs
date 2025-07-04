@@ -22,12 +22,9 @@ namespace InfrastructureLayer.Data.Configurations
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(pi => pi.Stock)
-                   .WithMany()
+                   .WithMany(s => s.PortfolioItems)
                    .HasForeignKey(pi => pi.StockId)
                    .OnDelete(DeleteBehavior.Restrict);
-
-
-
         }
     }
 }

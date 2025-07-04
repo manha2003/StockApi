@@ -27,8 +27,8 @@ namespace DomainLayer.Entities
         public Guid UserId { get; set; }
         public User User { get; set; }
 
-        public Guid? StockId { get; set; }
-        public Stock? Stock { get; set; }
+        public Guid StockId { get; set; }
+        public Stock Stock { get; set; }
 
        
         public OrderType Type { get; set; }        

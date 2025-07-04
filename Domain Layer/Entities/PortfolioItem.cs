@@ -15,8 +15,8 @@ namespace DomainLayer.Entities
         public Guid StockId { get; set; }
         public Stock Stock { get; set; }
 
-        public decimal? Quantity { get; set; }
-        public decimal? AvgBuyPrice { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal AvgBuyPrice { get; set; }
     }
 }
     

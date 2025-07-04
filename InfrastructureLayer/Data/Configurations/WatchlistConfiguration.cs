@@ -24,7 +24,7 @@ namespace InfrastructureLayer.Data.Configurations
 
             builder.HasOne(u => u.User)
                    .WithMany(u => u.Watchlists)
-                   .HasForeignKey(w => w.User.Id)
+                   .HasForeignKey(w => w.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(w => w.Items)
