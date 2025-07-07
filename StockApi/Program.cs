@@ -1,4 +1,7 @@
+using ApplicationLayer.Interfaces.Repositories;
 using InfrastructureLayer.Data;
+using InfrastructureLayer.Repositories.Implementations;
+
 using Microsoft.EntityFrameworkCore;
 
 
@@ -18,6 +21,11 @@ builder.Services.AddDbContext<StockAppDbContext>(options =>
 
 
 });
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+builder.Services.AddScoped<IWatchlistRepository, WatchlistRepository>();
 
 var app = builder.Build();
 

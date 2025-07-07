@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Entities
+namespace DomainLayer.Enums
 {
-    public class StockAlert
+    public enum OrderType
     {
+        Buy,
+        Sell
     }
 }

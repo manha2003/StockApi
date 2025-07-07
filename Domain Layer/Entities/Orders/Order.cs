@@ -1,23 +1,14 @@
-﻿using System;
+﻿using DomainLayer.Entities.Stocks;
+using DomainLayer.Entities.Users;
+using DomainLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Entities
+namespace DomainLayer.Entities.Orders
 {
-    public enum OrderType
-    {
-       Buy,
-       Sell
-    }
-
-    public enum OrderStatus
-    { 
-       Pending,  
-       Filled,     
-       Cancelled  
-    }
 
     public class Order
     {

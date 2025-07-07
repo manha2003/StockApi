@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DomainLayer.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using DomainLayer.Entities.Portfolios;
 
 namespace InfrastructureLayer.Data.Configurations
 {
