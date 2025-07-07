@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Entities
+namespace ApplicationLayer.Common.Mapping
 {
-    public class UserFollower
+    public class NotFoundException
     {
     }
 }

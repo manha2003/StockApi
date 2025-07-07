@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DomainLayer.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace DomainLayer.Entities
+namespace DomainLayer.Entities.Social
 {
     public class Post
     {

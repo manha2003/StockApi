@@ -1,10 +1,13 @@
-﻿using System;
+﻿using DomainLayer.Entities.Portfolios;
+using DomainLayer.Entities.Watchlists;
+using DomainLayer.Entities.Social;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Entities
+namespace DomainLayer.Entities.Users
 {
     public class User
     {
@@ -14,7 +17,7 @@ namespace DomainLayer.Entities
         public string PasswordHash { get; set; }
 
         public string UserName { get; set; }
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
@@ -22,7 +25,7 @@ namespace DomainLayer.Entities
         public ICollection<Portfolio>? Portfolios { get; set; }
         public ICollection<Watchlist>? Watchlists { get; set; }
         //public ICollection<Order>? Orders { get; set; }
-        //public ICollection<Post>? Posts { get; set; }
+        public ICollection<Post>? Posts { get; set; }
         //public ICollection<PostLike>? Likes { get; set; }
 
 

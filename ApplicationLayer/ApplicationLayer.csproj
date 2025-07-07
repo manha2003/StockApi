@@ -6,4 +6,20 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="DTOs\Social\" />
+    <Folder Include="DTOs\User\" />
+    <Folder Include="DTOs\Portfolio\" />
+    <Folder Include="DTOs\Watchlist\" />
+    <Folder Include="DTOs\Stock\" />
+    <Folder Include="Interfaces\Services\" />
+    <Folder Include="Validators\" />
+    <Folder Include="UseCases\Stocks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain Layer\DomainLayer.csproj" />
+  </ItemGroup>
+
 </Project>

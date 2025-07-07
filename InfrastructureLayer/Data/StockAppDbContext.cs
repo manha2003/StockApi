@@ -1,5 +1,8 @@
-﻿
-using DomainLayer.Entities;
+﻿using DomainLayer.Entities.Portfolios;
+using DomainLayer.Entities.Social;
+using DomainLayer.Entities.Stocks;
+using DomainLayer.Entities.Users;
+using DomainLayer.Entities.Watchlists;
 using Microsoft.EntityFrameworkCore;
 
 public class StockAppDbContext : DbContext

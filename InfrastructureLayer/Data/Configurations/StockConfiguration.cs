@@ -1,4 +1,4 @@
-﻿using DomainLayer.Entities;
+﻿using DomainLayer.Entities.Stocks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -39,7 +39,11 @@ namespace InfrastructureLayer.Data.Configurations
             builder.Property(s => s.IsActive)
                    .IsRequired();
 
-            builder.Property(s => s.LastUpdated)
+            builder.Property(s => s.LastestPrice)
+                     .HasPrecision(18, 2);
+                     
+
+            builder.Property(s => s.LastPriceUpdatedAt)
                    .IsRequired();
 
             

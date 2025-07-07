@@ -1,4 +1,4 @@
-﻿using DomainLayer.Entities;
+﻿using DomainLayer.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -43,6 +43,10 @@ namespace InfrastructureLayer.Data.Configurations
             /*builder.HasMany(u => u.Orders)
                    .WithOne(o => o.User)
                    .HasForeignKey(o => o.UserId);*/
+
+            builder.HasMany(u => u.Posts)
+                     .WithOne(p => p.User)
+                     .HasForeignKey(p => p.UserId);
 
 
         }

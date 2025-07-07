@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DomainLayer.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Entities
+namespace DomainLayer.Entities.Portfolios
 {
     public class Portfolio
     {

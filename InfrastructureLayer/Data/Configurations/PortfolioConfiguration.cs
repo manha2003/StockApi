@@ -1,4 +1,4 @@
-﻿using DomainLayer.Entities;
+﻿using DomainLayer.Entities.Portfolios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
