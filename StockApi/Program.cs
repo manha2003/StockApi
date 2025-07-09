@@ -1,5 +1,6 @@
 using ApplicationLayer.Interfaces.Repositories;
 using InfrastructureLayer.Data;
+using InfrastructureLayer.Helpers;
 using InfrastructureLayer.Repositories.Implementations;
 
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPortfolioRepository, PortfolioRepository>();
 builder.Services.AddScoped<IWatchlistRepository, WatchlistRepository>();
+
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 var app = builder.Build();
 

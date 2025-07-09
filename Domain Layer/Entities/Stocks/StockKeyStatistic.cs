@@ -11,16 +11,23 @@ namespace DomainLayer.Entities.Stocks
         public int Id { get; set; }
 
         public int StockId { get; set; }
-        public Stock Stock { get; set; } = null!;
+        public Stock Stock { get; set; }
 
         public decimal? PERatio { get; set; }
         public decimal? PEG { get; set; }
+        public decimal? EPS { get; set; }
         public decimal? ROE { get; set; }
         public decimal? ROA { get; set; }
+        public string? Descripstion { get; set; }
         public decimal? ProfitMargin { get; set; }
         public decimal? OperatingMargin { get; set; }
         public decimal? DebtToEquity { get; set; }
         public decimal? CurrentRatio { get; set; }
+      
+        public decimal? FiftyTwoWeekHigh { get; set; }
+        public decimal? FiftyTwoWeekLow { get; set; }
+        public decimal? FiftyDayMovingAverage { get; set; }
+        public decimal? TwoHundredDayMovingAverage { get; set; }
 
         public decimal? EarningsPerShare { get; set; }
         public decimal? Revenue { get; set; }
@@ -35,6 +42,10 @@ namespace DomainLayer.Entities.Stocks
         public decimal? BookValue { get; set; }
         public decimal? PriceToBook { get; set; }
 
-        public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
+        public DateTime LastUpdated { get; set; } = DateTime.UtcNow;  
+        
+
+
+       
     }
 }
