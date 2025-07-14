@@ -1,8 +1,9 @@
 ﻿using DomainLayer.Entities.Portfolios;
-using DomainLayer.Entities.Watchlists;
 using DomainLayer.Entities.Social;
+using DomainLayer.Entities.Watchlists;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,9 @@ namespace DomainLayer.Entities.Users
 
         public DateTime CreatedAt { get; set; }
 
-        
+        [MaxLength(100)]
+        public string? EmailConfirmationToken { get; set; }
+
         public ICollection<Portfolio>? Portfolios { get; set; }
         public ICollection<Watchlist>? Watchlists { get; set; }
         //public ICollection<Order>? Orders { get; set; }

@@ -1,6 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApplicationLayer.Interfaces.Repositories;
+using ApplicationLayer.Services;
+using InfrastructureLayer.Helpers;
+using InfrastructureLayer.Repositories.Implementations;
+using InfrastructureLayer.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +23,17 @@ namespace InfrastructureLayer
             services.AddDbContext<StockAppDbContext>(options =>
                 options.UseSqlServer(config.GetConnectionString("StockAppConnectionString")));
 
-                return services;
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPortfolioRepository, PortfolioRepository>();
+            services.AddScoped<IWatchlistRepository, WatchlistRepository>();
+            services.AddScoped<IStockRepository, StockRepository>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+            services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
+
+
+            return services;
         }
     }
 }
