@@ -8,22 +8,24 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace InfrastructureLayer.External.MarketDataApi
+namespace InfrastructureLayer.Services.Implementations
 {
-    public class AlphaVantageDataService
+    public class MarketStockDataService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiKey;
+        private readonly string _alphaAvantageApiKey;
+        private readonly string _finhubApiKey;
 
-        public AlphaVantageDataService(HttpClient httpClient, IConfiguration configuration)
+        public MarketStockDataService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _apiKey = configuration.GetSection("AlphaVantage")["ApiKey"];
+            _alphaAvantageApiKey = configuration["AlphaAvantageApiKey"];
+            _finhubApiKey = configuration["FinhubApiKey"];
         }
 
         public async Task<CompanyOverviewDto?> GetCompanyOverviewAsync(string symbol)
         {
-            var url = $"https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={_apiKey}";
+            var url = $"https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={_alphaAvantageApiKey}";
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
@@ -36,5 +38,7 @@ namespace InfrastructureLayer.External.MarketDataApi
 
             return JsonSerializer.Deserialize<CompanyOverviewDto>(json, options);
         }
+
+
     }
 }

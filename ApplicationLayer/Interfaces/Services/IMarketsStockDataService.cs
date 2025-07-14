@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationLayer.Interfaces.Services
 {
-    public interface IAlphaVantageDataService   
+    public interface IMarketStockDataService   
     {
         Task<CompanyOverviewDto?> GetCompanyOverviewAsync(string symbol);
     }
