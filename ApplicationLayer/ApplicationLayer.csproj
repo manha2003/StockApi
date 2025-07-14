@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Common\Mapping\" />
     <Folder Include="DTOs\Social\" />
-    <Folder Include="DTOs\User\" />
     <Folder Include="DTOs\Portfolio\" />
     <Folder Include="DTOs\Watchlist\" />
     <Folder Include="Validators\" />
