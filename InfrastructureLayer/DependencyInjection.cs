@@ -1,8 +1,10 @@
 ﻿using ApplicationLayer.Interfaces.Repositories;
+using ApplicationLayer.Interfaces.Services;
 using ApplicationLayer.Services;
 using InfrastructureLayer.Helpers;
 using InfrastructureLayer.Repositories.Implementations;
 using InfrastructureLayer.Services;
+using InfrastructureLayer.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,8 @@ namespace InfrastructureLayer
             services.AddScoped<IWatchlistRepository, WatchlistRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+            services.AddScoped<IEmailService, EmailService>();
 
             services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
 

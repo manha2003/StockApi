@@ -11,15 +11,30 @@ namespace InfrastructureLayer.Repositories.Implementations
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public UserRepository(StockAppDbContext context) : base(context) 
-        { 
+        public UserRepository(StockAppDbContext context) : base(context)
+        {
 
         }
 
         public async Task<User?> GetByEmailAsync(string email)
         {
-           return await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == email);
+            return await _context.Users
+                 .FirstOrDefaultAsync(u => u.Email == email);
+        }
+
+        public bool ExistsByEmail(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
+        }
+
+        public async Task<User> GetByEmailAndTokenAsync(string email, string token)
+        {
+            return await _context.Users.SingleOrDefaultAsync(u => u.Email == email && u.EmailConfirmationToken == token);
+        }
+
+        public bool ExistsByUserName(string userName)
+        {
+            return _context.Users.Any(u => u.UserName == userName);
         }
     }
 }

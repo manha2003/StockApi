@@ -8,9 +8,9 @@ namespace DomainLayer.Entities.Stocks
 {
     public class StockKeyStatistic
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int StockId { get; set; }
+        public Guid StockId { get; set; }
         public Stock Stock { get; set; }
 
         public decimal? PERatio { get; set; }
