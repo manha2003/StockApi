@@ -24,6 +24,7 @@ namespace DomainLayer.Entities.Users
 
         [MaxLength(100)]
         public string? EmailConfirmationToken { get; set; }
+        public bool IsEmailConfirmed { get; set; } = false;
 
         public ICollection<Portfolio>? Portfolios { get; set; }
         public ICollection<Watchlist>? Watchlists { get; set; }

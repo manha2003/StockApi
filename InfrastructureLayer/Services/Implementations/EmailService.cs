@@ -3,23 +3,27 @@ using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApplicationLayer.Interfaces.Services;
+using ApplicationLayer.Interfaces.Repositories;
 
 namespace InfrastructureLayer.Services.Implementations
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
         private readonly EmailSettings emailSettings;
-        public EmailService(IOptions<EmailSettings> options)
+        private readonly IUserRepository _userRepository;   
+
+        public EmailService(IOptions<EmailSettings> options, IUserRepository userRepository)
         {
             emailSettings = options.Value;
+            _userRepository = userRepository;
         }
+
         public async Task SendEmailAsync(MailRequest mailrequest)
         {
             var email = new MimeMessage();
@@ -39,6 +43,22 @@ namespace InfrastructureLayer.Services.Implementations
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
         }
+
+        public async Task<bool> ConfirmEmailAsync(string email, string token)
+        {
+            var user = await _userRepository.GetByEmailAndTokenAsync(email, token);
+            if (user == null || user.IsEmailConfirmed)
+            {
+                return false;
+            }
+
+            user.IsEmailConfirmed = true;
+            user.EmailConfirmationToken = null;
+            _userRepository.Update(user);
+
+            return true;
+        }
+
 
         public string GenerateEmailConfirmationToken()
         {
