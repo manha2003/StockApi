@@ -16,12 +16,14 @@ namespace InfrastructureLayer.Services.Implementations
     public class EmailService : IEmailService
     {
         private readonly EmailSettings emailSettings;
-        private readonly IUserRepository _userRepository;   
+        private readonly IUserRepository _userRepository;
+        private readonly string _templatePath;
 
         public EmailService(IOptions<EmailSettings> options, IUserRepository userRepository)
         {
             emailSettings = options.Value;
             _userRepository = userRepository;
+            _templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Services", "Templates", "ConfirmEmailTemplate.html");
         }
 
         public async Task SendEmailAsync(MailRequest mailrequest)
@@ -54,9 +56,16 @@ namespace InfrastructureLayer.Services.Implementations
 
             user.IsEmailConfirmed = true;
             user.EmailConfirmationToken = null;
-            _userRepository.Update(user);
+            await _userRepository.UpdateAsync(user);
 
             return true;
+        }
+
+        public async Task<string> GenerateConfirmationEmailBodyAsync(string userName, string email, string token)
+        {
+            string template = await File.ReadAllTextAsync(_templatePath);
+            return template.Replace("{{UserName}}", userName)
+                           .Replace("{{ConfirmationLink}}", $"http://localhost:5218/api/Auth/confirm-email/?email={email}&token={token}");
         }
 
 

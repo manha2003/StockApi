@@ -8,6 +8,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,13 +49,14 @@ namespace ApplicationLayer.UseCases.Users.RegisterUser
             
             user.EmailConfirmationToken = _emailService.GenerateEmailConfirmationToken();
 
-           
+            string body = await _emailService.GenerateConfirmationEmailBodyAsync(user.UserName, user.Email, user.EmailConfirmationToken);
+
 
             var mailRequest = new MailRequest
             {
                 ToEmail = dto.Email,
                 Subject = "Confirm your email for new account ",
-                Body = "Update later" //this is where i include the confirmation link 
+                Body = body 
             };
 
             try
@@ -68,8 +70,9 @@ namespace ApplicationLayer.UseCases.Users.RegisterUser
             }
 
             await _userRepository.AddAsync(user);
-            return "User registered successfully.";
+            return $"User {dto.UserName} registered successfully.";
         }
 
     }
 }
+ 

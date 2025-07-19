@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using ApplicationLayer.Common.Behaviors;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ namespace ApplicationLayer
             services.AddAutoMapper(configuration => configuration.AddMaps(assembly));
 
             services.AddValidatorsFromAssembly(assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             return services;
         }

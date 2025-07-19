@@ -28,7 +28,7 @@ namespace ApplicationLayer.UseCases.Users.ConfirmEmail
             user.IsEmailConfirmed = true;
             user.EmailConfirmationToken = null;
 
-            _userRepository.Update(user); 
+            await _userRepository.UpdateAsync(user); 
 
             return true;
         }

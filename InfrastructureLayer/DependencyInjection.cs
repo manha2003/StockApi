@@ -1,6 +1,7 @@
 ﻿using ApplicationLayer.Interfaces.Repositories;
 using ApplicationLayer.Interfaces.Services;
 using ApplicationLayer.Services;
+using InfrastructureLayer.Authentication;
 using InfrastructureLayer.Helpers;
 using InfrastructureLayer.Repositories.Implementations;
 using InfrastructureLayer.Services;
@@ -33,6 +34,8 @@ namespace InfrastructureLayer
             services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             services.AddScoped<IEmailService, EmailService>();
+
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
 
