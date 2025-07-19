@@ -10,6 +10,7 @@ namespace ApplicationLayer.Interfaces.Repositories
     public interface IUserRepository : IGenericRepository <User>
     {
         Task<User?> GetByEmailAsync(string email);
+        Task<User?> GetByUserNameAsync(string userName);
         bool ExistsByEmail(string email);
         bool ExistsByUserName(string username);
         Task<User> GetByEmailAndTokenAsync(string email, string token);

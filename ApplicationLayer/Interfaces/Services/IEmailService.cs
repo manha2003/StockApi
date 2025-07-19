@@ -10,7 +10,7 @@ namespace ApplicationLayer.Interfaces.Services
     public interface IEmailService
     {
         Task SendEmailAsync(MailRequest mailrequest);
-       
+        Task<string> GenerateConfirmationEmailBodyAsync(string userName, string email, string token);
         string GenerateEmailConfirmationToken();
     }
 }

@@ -16,8 +16,13 @@ namespace ApplicationLayer.Common.Mapping
             CreateMap<RegisterUserDto, User>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.Now))
                 .ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
+
+            CreateMap<LoginUserDto, User>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+                .ForMember(dest => dest.Email, opt => opt.Ignore());
         }
     }
 }

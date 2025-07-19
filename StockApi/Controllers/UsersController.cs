@@ -10,15 +10,16 @@ namespace StockApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IMediator _mediator;
-        public UsersController(IMediator mediator) => _mediator = mediator;
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterUserCommand command)
+        private readonly IMediator _mediator;
+
+        public UsersController(IMediator mediator)
         {
-            var result = await _mediator.Send(command);
-            return Ok(ApiResponse<string>.SuccessResponse(result, "User registered successfully"));
+            _mediator = mediator;
         }
+
+
+       
 
     }
 }
